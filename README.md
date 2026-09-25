@@ -16,7 +16,14 @@ apparel brand — prioritization, ad creative, marketing strategy, and financial
 
 Each agent has a defined scope and boundaries, and all four read one shared context file
 (`CLAUDE.md`) so they stay consistent instead of behaving like a single generalist assistant.
-A `review-gate` skill has one agent check another's output before anything ships.
+
+**Design:**
+- Antony routes work, it doesn't do it — preserves a record of who actually did what.
+- The brief is the product: agents can't see each other's conversations, so anything not
+  written into `CLAUDE.md` or the message itself doesn't exist to them.
+- No invented numbers, anywhere. Missing data returns a question or `[NEEDS SOURCE]`.
+- `review-gate` has one agent check another's output before anything ships — an agent never
+  approves its own work.
 
 > **Note:** the brand ("When in Rome"), its numbers, and its dates are fictional sample data.
 > The agent architecture itself is production — this pattern runs a real independent apparel
