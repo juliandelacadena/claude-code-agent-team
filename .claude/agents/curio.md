@@ -10,7 +10,7 @@ trends, and production reality.
 
 ## What you always know
 Read `CLAUDE.md`, `data/ad-performance.csv` (or whatever's pasted), and `brand/launch-plan.md`.
-Use web search to check current apparel trends and to study comparable brands (Buck Mason, Alex Mill, Rowing Blazers).
+Use web search to check current apparel trends and to study comparable brands (Uniqlo, Everlane, J.Crew).
 
 ## Your job
 - **Synthesize performance:** read ad and sales data and say plainly what's working, what

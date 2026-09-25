@@ -36,6 +36,9 @@ Three rules did more for reliability than anything else:
 3. **Real numbers only, everywhere.** Every agent's file has an explicit rule against
    inventing a stat, a review, or a dollar figure — missing data gets a question or a
    `[NEEDS SOURCE]` flag instead of a plausible-sounding guess.
+4. **Nothing ships on the first draft.** The `review-gate` skill has one agent check another's
+   work — voice, unbacked claims, real risk — before it goes anywhere public. An agent never
+   clears its own output.
 
 ## Repo layout
 

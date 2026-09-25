@@ -5,7 +5,7 @@ every agent reads first — this file is what Oppius and Curio lean on when they
 to write something.
 
 ## Positioning
-When in Rome sits next to Buck Mason, Alex Mill, and Rowing Blazers — 22–35, values fit and
+When in Rome sits next to Uniqlo, Everlane, and J.Crew — 22–35, values fit and
 fabric over logos, buys for versatility rather than a specific scene. The pitch: one capsule
 that reads right whether you're at a desk, at dinner, or on a flight — "do as the Romans do,"
 wherever that ends up being.
