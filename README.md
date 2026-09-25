@@ -1,69 +1,54 @@
-# When in Rome — AI Agent Team
+# Claude Code Agent Team
 
-Four AI specialists — Antony, Oppius, Curio, Balbus — running the day-to-day of an apparel
-label: prioritization, ad creative, marketing strategy, and unit economics. One human founder
-in the loop, everything drafted for approval.
+A four-agent AI team, built on Claude Code, that runs the day-to-day operations of a small
+apparel brand — prioritization, ad creative, marketing strategy, and financial modeling.
 
-**[Try it live →](https://claude.ai/artifact/1WApZa6WQ6hn6BnUxDKPte)**
+**[Live demo](https://claude.ai/artifact/1WApZa6WQ6hn6BnUxDKPte)**
 
-> **What's real here, what isn't:** "When in Rome," its Nov 1 drop, and every number in this
-> repo are fictional — invented so this could be shared publicly with nothing private in it.
-> The agent structure itself is not a mockup: this exact pattern — four roles, one shared
-> brief, the same hard rules against fabricating numbers — currently runs a real independent
-> apparel brand. This repo is that pattern, with the real brand's data swapped for sample data
-> so it's safe to fork, run, and read end to end.
+## What it does
 
-## What this is
-
-The brand runs on Claude Code as a small, permanent team instead of one long chat:
-
-| Agent | Job |
+| Agent | Role |
 |---|---|
-| **Antony** | Chief of staff — weekly prioritization, sequencing, what to ignore. Talk to first. |
-| **Oppius** | Turns existing photos/copy into ad creative and copy. Drafts only. |
-| **Curio** | Sales & marketing strategy — trends, competitor teardowns, the growth plan. |
-| **Balbus** | Real numbers only — unit economics, path-to-goal modeling. Never invents a figure. |
+| **Antony** | Chief of staff — weekly prioritization, sequencing, what to drop. Entry point. |
+| **Oppius** | Ad creative and copy from existing assets. Drafts only. |
+| **Curio** | Marketing strategy — trends, competitor comparisons, growth plan. |
+| **Balbus** | Unit economics and financial modeling. Never invents a figure. |
 
-**Agents = who. Skills = how. `CLAUDE.md` = what's true.** Every agent reads the same shared
-brief before answering, which is why they don't contradict each other, and each one has
-written boundaries (draft-only, never fabricate, ask instead of guess) instead of being a
-generic assistant with no job description.
+Each agent has a defined scope and boundaries, and all four read one shared context file
+(`CLAUDE.md`) so they stay consistent instead of behaving like a single generalist assistant.
+A `review-gate` skill has one agent check another's output before anything ships.
 
-## Why it's built this way
+> **Note:** the brand ("When in Rome"), its numbers, and its dates are fictional sample data.
+> The agent architecture itself is production — this pattern runs a real independent apparel
+> brand today, with the real data swapped out here so the repo is safe to share and run.
 
-Three rules did more for reliability than anything else:
+## Install
 
-1. **The coordinator routes, it doesn't do the work.** Antony assigns to a specialist instead
-   of just answering itself — otherwise you lose the specialist framing and the record of who
-   did what.
-2. **The brief is the product.** Agents can't see each other's conversations, so if a fact
-   isn't written into `CLAUDE.md` or handed to them directly, they don't have it. Most bad
-   answers trace back to a thin prompt, not a weak agent.
-3. **Real numbers only, everywhere.** Every agent's file has an explicit rule against
-   inventing a stat, a review, or a dollar figure — missing data gets a question or a
-   `[NEEDS SOURCE]` flag instead of a plausible-sounding guess.
-4. **Nothing ships on the first draft.** The `review-gate` skill has one agent check another's
-   work — voice, unbacked claims, real risk — before it goes anywhere public. An agent never
-   clears its own output.
+Requires [Claude Code](https://docs.claude.com/en/docs/claude-code).
 
-## Repo layout
-
-```
-CLAUDE.md                 # the shared brief every agent reads first
-.claude/agents/*.md        # the four specialists — name, job, boundaries
-.claude/skills/*/SKILL.md  # repeatable routines (e.g. "plan my week", "make me ads")
-brand/                     # brand voice + the sample launch plan
-data/                      # sample-only numbers (real figures never go in git — see CLAUDE.md's own rule)
+```bash
+git clone https://github.com/<your-username>/claude-code-agent-team.git
+cd claude-code-agent-team
+claude
 ```
 
-## Run it yourself
+## Usage
 
 ```
-claude   # from this folder — Claude Code loads CLAUDE.md and the agents automatically
+antony, what should I focus on this week
+have oppius draft 3 ad angles for the capsule drop
+curio, how does this compare to Uniqlo's approach
 ```
 
-Then just talk to it: `antony, what should I focus on this week` or
-`have oppius draft me 3 ad angles`.
+## Structure
+
+```
+CLAUDE.md                  shared context every agent reads first
+.claude/agents/*.md        the four specialists
+.claude/skills/*/SKILL.md  repeatable routines, including review-gate
+brand/                     brand voice + sample launch plan
+data/                      sample-only figures (real data never goes in git)
+```
 
 ---
-Built by Julian De La Cadena.
+Julian De La Cadena
