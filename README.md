@@ -4,8 +4,8 @@ Four AI specialists — Antony, Oppius, Curio, Balbus — running the day-to-day
 apparel label: prioritization, ad creative, marketing strategy, and unit economics. One human
 founder in the loop, everything drafted for approval.
 
-**[Try it live →](#)** (runs on a fictional brand, "When in Rome," so it's safe to click
-around — no real business data here)
+**[Try it live →](https://claude.ai/artifact/1WApZa6WQ6hn6BnUxDKPte)** (runs on a fictional
+brand, "When in Rome," so it's safe to click around — no real business data here)
 
 ## What this is
 
