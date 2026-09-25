@@ -34,7 +34,7 @@ Each agent has a defined scope and boundaries, and all four read one shared cont
 Requires [Claude Code](https://docs.claude.com/en/docs/claude-code).
 
 ```bash
-git clone https://github.com/<your-username>/claude-code-agent-team.git
+git clone https://github.com/juliandelacadena/claude-code-agent-team.git
 cd claude-code-agent-team
 claude
 ```
