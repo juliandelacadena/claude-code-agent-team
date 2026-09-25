@@ -1,11 +1,17 @@
 # When in Rome — AI Agent Team
 
-Four AI specialists — Antony, Oppius, Curio, Balbus — running the day-to-day of a fictional
-apparel label: prioritization, ad creative, marketing strategy, and unit economics. One human
-founder in the loop, everything drafted for approval.
+Four AI specialists — Antony, Oppius, Curio, Balbus — running the day-to-day of an apparel
+label: prioritization, ad creative, marketing strategy, and unit economics. One human founder
+in the loop, everything drafted for approval.
 
-**[Try it live →](https://claude.ai/artifact/1WApZa6WQ6hn6BnUxDKPte)** (runs on a fictional
-brand, "When in Rome," so it's safe to click around — no real business data here)
+**[Try it live →](https://claude.ai/artifact/1WApZa6WQ6hn6BnUxDKPte)**
+
+> **What's real here, what isn't:** "When in Rome," its Nov 1 drop, and every number in this
+> repo are fictional — invented so this could be shared publicly with nothing private in it.
+> The agent structure itself is not a mockup: this exact pattern — four roles, one shared
+> brief, the same hard rules against fabricating numbers — currently runs a real independent
+> apparel brand. This repo is that pattern, with the real brand's data swapped for sample data
+> so it's safe to fork, run, and read end to end.
 
 ## What this is
 
@@ -58,12 +64,6 @@ claude   # from this folder — Claude Code loads CLAUDE.md and the agents autom
 
 Then just talk to it: `antony, what should I focus on this week` or
 `have oppius draft me 3 ad angles`.
-
-## What's real vs. sample here
-
-The agent definitions, the skills, and the pattern are exactly what's running behind the live
-demo. The numbers in `data/` and the plan in `brand/` are placeholders, clearly marked — real
-business data never goes in a public repo, per the rule baked into `CLAUDE.md` itself.
 
 ---
 Built by Julian De La Cadena.
