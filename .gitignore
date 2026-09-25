@@ -1,0 +1,6 @@
+# The data/*.md files in this repo are intentionally sample/placeholder data (see their
+# own headers) so the pattern is demonstrable out of the box. If you reuse this skeleton
+# for a real brand, replace them with real numbers LOCALLY and gitignore them again —
+# CLAUDE.md's own rule is real financials/customer data never goes in git.
+
+.DS_Store
