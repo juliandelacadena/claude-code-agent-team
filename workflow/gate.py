@@ -12,8 +12,8 @@ Enforced invariants:
     and it passes review — there is no code path from `needs_revision` to `human_approved`.
   - Nothing reaches `human_approved` without first being in `approved_pending_human`, which
     only `review` can set, and only on an APPROVE verdict.
-  - `approve` requires a literal typed "APPROVE" on stdin. There is no flag or argument that
-    skips this.
+  - `approve` requires typing `y` at a [y/N] prompt. There is no flag or argument that skips
+    this — anything other than `y` (including just hitting enter) leaves the record unchanged.
 
 Usage:
     python3 workflow/gate.py submit <author_agent> <content_file>
@@ -131,8 +131,8 @@ def cmd_approve(rid):
     print(rec["content"])
     print("\n--- Reviewer verdict ---")
     print(rec["review_feedback"])
-    confirm = input("\nType APPROVE to confirm a human is authorizing this to ship: ").strip()
-    if confirm != "APPROVE":
+    confirm = input("\nApprove and ship this? [y/N] ").strip().lower()
+    if confirm != "y":
         print("Not approved. No state change.")
         return
 

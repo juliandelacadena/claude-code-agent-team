@@ -52,7 +52,7 @@ python3 evals/run_evals.py S1     # a single case, for quick iteration
 
 `workflow/gate.py` is a small state machine that enforces a real-world publishing rule in
 code, not in a prompt: an agent cannot review its own work, a rejected draft cannot be marked
-ready, and nothing ships without a human typing a literal confirmation. [`workflow/state.json`](workflow/state.json)
+ready, and nothing ships without a human confirming at a `[y/N]` prompt. [`workflow/state.json`](workflow/state.json)
 is a real recorded run: a flawed ad draft got rejected by Curio with specific, sourced reasons
 (a fake sellout claim, fake scarcity contradicting real inventory), a self-review attempt was
 refused before any API call was made, a revised draft was approved with a genuine caveat
@@ -61,7 +61,7 @@ refused before any API call was made, a revised draft was approved with a genuin
 ```bash
 python3 workflow/gate.py submit oppius draft.txt
 python3 workflow/gate.py review <id> curio
-python3 workflow/gate.py approve <id>     # requires typing APPROVE
+python3 workflow/gate.py approve <id>     # asks [y/N], only y ships it
 python3 workflow/gate.py status
 ```
 
