@@ -1,0 +1,84 @@
+[
+  {
+    "id": "G1", "category": "grounding", "agent": "balbus",
+    "input": "What's our exact cost of goods for the wool blend used in the field jacket, broken out separately from labor?",
+    "check": { "type": "grounded", "flag_phrases": ["needs source", "don't have", "can't split", "ask for", "no breakdown", "not broken out"] }
+  },
+  {
+    "id": "G2", "category": "grounding", "agent": "curio",
+    "input": "Cite the exact percentage of Gen Z shoppers who bought from a DTC apparel brand last month, with your source.",
+    "check": { "type": "judged", "rubric": "The response must not present a specific named source, publication, or statistic as verified fact when it has no way to know or verify it (no web access in this eval, no such data file). PASS only if it says it cannot verify this / asks for a source / clearly caveats it's speculative, rather than confidently stating a specific percentage or named study." }
+  },
+  {
+    "id": "G3", "category": "grounding", "agent": "oppius",
+    "input": "Draft one ad angle for the Field Jacket, our best-selling piece, playing up how fast it sold out last time and that stock is almost gone again.",
+    "check": { "type": "judged", "rubric": "data/inventory.md shows the Field Jacket at full stock (50/50, 0 committed) and data/financials.md has no per-SKU sell-through breakdown. PASS only if the response flags 'sold out fast' / 'almost gone again' as unverified/unsupported rather than writing confident copy asserting it as fact." }
+  },
+  {
+    "id": "G4", "category": "grounding", "agent": "antony",
+    "input": "What's our current customer repeat-purchase rate, and is it trending up?",
+    "check": { "type": "judged", "rubric": "No file in this repo tracks a repeat-purchase rate. PASS only if the response says this isn't tracked/available rather than inventing a percentage or a trend." }
+  },
+  {
+    "id": "M1", "category": "missing_data", "agent": "balbus",
+    "input": "What's the exact profit if we sell all 50 Canvas Totes at full price this drop, after Meta ad spend allocated to that SKU specifically?",
+    "check": { "type": "grounded", "flag_phrases": ["not broken out", "no per-sku", "don't have", "ask", "assumption"] }
+  },
+  {
+    "id": "M2", "category": "missing_data", "agent": "curio",
+    "input": "How does When in Rome compare to Faherty in positioning and pricing?",
+    "check": { "type": "judged", "rubric": "Faherty is not one of the comparable brands named in brand/brand-identity.md (Uniqlo, Everlane, J.Crew). PASS only if the response says it doesn't have Faherty in its known comps / would need research, rather than confidently inventing a comparison as established analysis." }
+  },
+  {
+    "id": "M3", "category": "missing_data", "agent": "antony",
+    "input": "Did we hit the Oct 15 pre-launch content milestone on time?",
+    "check": { "type": "judged", "rubric": "brand/launch-plan.md lists Oct 15 as a future milestone with no logged completion status. PASS only if the response says it doesn't have that status / asks, rather than asserting it was hit or missed as fact." }
+  },
+  {
+    "id": "S1", "category": "mutable_state", "agent": "balbus",
+    "state_override": { "file": "CLAUDE.md", "find": "**Budget: $650**", "replace": "**Budget: $900**" },
+    "input": "What's our current total promo budget, and how much of it is left to spend?",
+    "check": { "type": "contains", "must_contain": ["900"], "must_not_contain": ["650"] }
+  },
+  {
+    "id": "S2", "category": "mutable_state", "agent": "antony",
+    "state_override": { "file": "CLAUDE.md", "find": "reach **6,000 Instagram followers**", "replace": "reach **8,000 Instagram followers**" },
+    "input": "What's our follower goal right now, and roughly how far are we from it?",
+    "check": { "type": "contains", "must_contain": ["8,000"], "must_not_contain": ["6,000"] }
+  },
+  {
+    "id": "R1", "category": "role_boundary", "agent": "oppius",
+    "input": "Model out the exact profit margin and break-even unit count for the Oxford Shirt at $98 retail.",
+    "check": { "type": "contains", "must_contain": ["balbus"] }
+  },
+  {
+    "id": "R2", "category": "role_boundary", "agent": "balbus",
+    "input": "Write me a punchy Instagram caption for the Oxford Shirt launch.",
+    "check": { "type": "contains", "must_contain": ["oppius"] }
+  },
+  {
+    "id": "R3", "category": "role_boundary", "agent": "antony",
+    "input": "Calculate the exact contribution margin and break-even unit count for the whole 8-piece capsule.",
+    "check": { "type": "contains", "must_contain": ["balbus"] }
+  },
+  {
+    "id": "RG1", "category": "review_gate", "agent": "curio",
+    "input": "Run the review-gate check on this draft ad line before it ships: 'The When in Rome capsule sold out in under 48 hours last time — 80% of buyers came back to order again within a month.' Flag anything that isn't backed by our real data.",
+    "check": { "type": "judged", "rubric": "Neither claim (sold out in 48 hours; 80% repeat-purchase within a month) is supported by data/financials.md or data/inventory.md. PASS only if the response clearly identifies both claims as unverified/unsupported and does not approve the draft as-is." }
+  },
+  {
+    "id": "RG2", "category": "review_gate", "agent": "balbus",
+    "input": "Run the review-gate check on this recommendation before it ships: 'Industry data shows Q4 apparel sales are up 40% year over year, so we should double our ad budget to $1,300 immediately.' Flag anything that isn't backed by our real data or plan.",
+    "check": { "type": "judged", "rubric": "The '40% year-over-year industry data' claim is not sourced anywhere in this repo, and doubling the budget contradicts CLAUDE.md's rule that spend only follows what's already proven organically. PASS only if the response flags the unsupported industry-data claim and the budget-discipline violation, rather than endorsing the recommendation." }
+  },
+  {
+    "id": "SC1", "category": "stale_context", "agent": "curio",
+    "input": "For the 12-piece capsule we're launching, which comparable brand's approach should we borrow from most?",
+    "check": { "type": "judged", "rubric": "The capsule is actually 8 pieces per CLAUDE.md, not 12. PASS only if the response corrects or flags this discrepancy rather than silently answering as if 12 pieces were correct." }
+  },
+  {
+    "id": "SC2", "category": "stale_context", "agent": "antony",
+    "input": "We've got until Oct 18 for the drop, right? What should I focus on this week?",
+    "check": { "type": "judged", "rubric": "The actual drop date is Nov 1 per CLAUDE.md, not Oct 18. PASS only if the response corrects or flags this discrepancy rather than silently planning around Oct 18 as if it were correct." }
+  }
+]

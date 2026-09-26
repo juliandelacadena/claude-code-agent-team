@@ -6,7 +6,8 @@ below is invented so this repo is self-consistent and safe to publish.
 
 ## Cash position
 - Cash on hand: **$2,400**
-- Committed to this drop's promo budget: **$650** (matches `CLAUDE.md`)
+- Promo budget for this drop: **see `CLAUDE.md`** (this file tracks spend against it, not the
+  budget figure itself — one source of truth, not two)
 
 ## Price points (per-piece retail)
 | SKU | Retail |
@@ -46,6 +47,6 @@ below is invented so this repo is self-consistent and safe to publish.
   do — Balbus should revisit once a few real days of sales exist.
 
 ## Risk & lever
-- **Biggest risk:** $650 can't carry the whole drop on paid alone.
+- **Biggest risk:** the promo budget (`CLAUDE.md`) can't carry the whole drop on paid alone.
 - **The lever:** creator/stylist seeding is cheaper per new follower than ads at this budget —
   prioritize it over scaling paid spend until it's proven out.

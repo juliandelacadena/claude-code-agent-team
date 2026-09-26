@@ -28,8 +28,45 @@ Each agent has a defined scope and boundaries, and all four read one shared cont
 > **Note:** the brand ("When in Rome"), its numbers, and its dates are fictional sample data.
 > The pattern itself isn't a mockup — this exact operating structure runs a real independent
 > apparel brand's day-to-day today, with the real data swapped out here so the repo is safe to
-> share and run. It's a Claude Code operating pattern in real use, not an agent runtime with
-> its own evals, tests, or telemetry.
+> share and run.
+
+## Automated evals
+
+`evals/` runs 16 real, live cases against the actual agents — no mocked output — and checks
+each response with a structured assertion (a dollar-amount grounding check against the real
+data files, deterministic phrase checks, or an LLM-as-judge call graded against a written
+rubric), not just "did it say the magic phrase." Cases cover grounding, missing-data handling,
+mutable-state propagation (change the budget in `CLAUDE.md` and confirm Balbus adapts without
+its own file changing), role boundaries, review-gate behavior, and stale-context resistance.
+
+**Latest real run: 15/16.** The one failure is a documented false positive in the grounding
+checker, not an agent error — see [`evals/results.json`](evals/results.json) for every case's
+full input, response, and verdict.
+
+```bash
+python3 evals/run_evals.py        # full suite
+python3 evals/run_evals.py S1     # a single case, for quick iteration
+```
+
+## Machine-enforced workflow
+
+`workflow/gate.py` is a small state machine that enforces a real-world publishing rule in
+code, not in a prompt: an agent cannot review its own work, a rejected draft cannot be marked
+ready, and nothing ships without a human typing a literal confirmation. [`workflow/state.json`](workflow/state.json)
+is a real recorded run: a flawed ad draft got rejected by Curio with specific, sourced reasons
+(a fake sellout claim, fake scarcity contradicting real inventory), a self-review attempt was
+refused before any API call was made, a revised draft was approved with a genuine caveat
+(an unverified fabric claim), and only then did a human approval unlock it.
+
+```bash
+python3 workflow/gate.py submit oppius draft.txt
+python3 workflow/gate.py review <id> curio
+python3 workflow/gate.py approve <id>     # requires typing APPROVE
+python3 workflow/gate.py status
+```
+
+See [`ROADMAP.md`](ROADMAP.md) for the architecture planned beyond this (orchestration, a
+real data layer, tracing, and a single-agent benchmark) — designed for, not yet built.
 
 ## Examples
 
@@ -70,6 +107,9 @@ CLAUDE.md                  shared context every agent reads first
 brand/                     brand voice + sample launch plan
 data/                      sample-only figures (real data never goes in git)
 examples/                  real transcripts showing the agents in action
+evals/                     automated eval suite + its real results
+workflow/                  the machine-enforced review gate + a real recorded run
+ROADMAP.md                 the planned V5-V8 architecture (not yet built)
 ```
 
 ---
